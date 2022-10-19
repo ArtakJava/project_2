@@ -6,12 +6,15 @@ import java.util.HashMap;
 
 public class MonthlyReport {
     int year;
+
     MonthlyReport (int year) {
         this.year = year;
     }
     static final String[] months = new String[] {"январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь"};
-
     boolean isMonthlyReadCompleted = false;
+
+
+
 
     static HashMap<Integer, ArrayList<MonthlyReportLine>> monthlyReports = new HashMap<>();
 
@@ -84,7 +87,7 @@ public class MonthlyReport {
     public static int getMonthlyIncome(int month) {
         int monthlyIncome = 0;
         for (MonthlyReportLine  monthlyReportLine: monthlyReports.get(month)) {
-            if (monthlyReportLine.is_expense == false) {
+            if (!monthlyReportLine.is_expense) {
                 monthlyIncome += monthlyReportLine.quantity * monthlyReportLine.sum_of_one;
             }
         }
@@ -94,7 +97,7 @@ public class MonthlyReport {
     public static int getMonthlyExpense(int month) {
         int monthlyIncome = 0;
         for (MonthlyReportLine  monthlyReportLine: monthlyReports.get(month)) {
-            if (monthlyReportLine.is_expense == true) {
+            if (monthlyReportLine.is_expense) {
                 monthlyIncome += monthlyReportLine.quantity * monthlyReportLine.sum_of_one;
             }
         }
